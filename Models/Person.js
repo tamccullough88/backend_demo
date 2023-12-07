@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const PersonSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: trusted,
+        required: true,
     },
     age: {
         type: Number,
