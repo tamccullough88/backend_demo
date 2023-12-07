@@ -4,7 +4,7 @@ const { getAllPeople, getPersonById, createPerson, deletePerson } = require('../
 router.get('/all', getAllPeople)
 router.get('/:id', getPersonById)
 router.post('/', createPerson)
-router.delete('/id', deletePerson)
+router.delete('/:id', deletePerson)
 
 
 
