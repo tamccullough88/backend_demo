@@ -1,5 +1,6 @@
 const Person = require("../Models/Person")
 
+//get all people
 async function getAllPeople(req, res) {
     try {
         const people = await Person.find()
@@ -10,6 +11,7 @@ async function getAllPeople(req, res) {
     }
 }
 
+//display a person
 async function getPersonById(req, res) {
     try {
         const { id } = req.params
@@ -21,6 +23,7 @@ async function getPersonById(req, res) {
     }
 }
 
+//create a person
 async function createPerson(req, res) {
     try {
         await new Person({ ...req.body }).save()
@@ -31,6 +34,20 @@ async function createPerson(req, res) {
     }
 }
 
+//update a person
+async function updatePerson(req, res) {
+    try {
+
+        const people = await Person.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        res.status(202).json({ message: 'user updated' })
+        console.log(people)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: 'error updating person' })
+    }
+}
+
+//delete a person
 async function deletePerson(req, res) {
     try {
         const { id } = req.params
@@ -42,9 +59,13 @@ async function deletePerson(req, res) {
     }
 }
 
+
+//export
 module.exports = {
     getAllPeople,
     getPersonById,
     createPerson,
+    updatePerson,
     deletePerson
+
 }
